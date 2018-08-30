@@ -11,7 +11,11 @@ API Provider that calculates and return the loan term quotes.
 
 I would really appreciate an opportunity to discuss more about this topic in person!
 
-In order to
+In order to preserve the non-frequently changing data, I decided to create a `properties` and `rent_rolls` table, which hold information about its entity. Expense table was also created to keep track of all expenses on that property.
+
+Property has_many rent_rolls;
+Property has_many expenses;
+Quote table simply keeps the end results.
 
 ## Input JSON Data
 
