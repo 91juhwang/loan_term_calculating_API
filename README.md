@@ -9,49 +9,63 @@ API Provider that calculates and return the loan term quotes.
 
 ## Database Model Deisgn
 
-The application returns a calculated quotes for the user.
-However, because storing calculation data depends on each other, it is not a good practice to store them in a database.
-Since the calculation was about the `properties` and itstable was necessary
-
-In order to reach the purpose of returning the loan term quotes for the commercial property, the `property`, `units`, and the `expenses` were created to keep track of independent
-
-
-Breaking down of 4 inputs from the user, these 3 wer
-
-Because
-
-## Database Association
+Will update later.
 
 ## Input JSON Data
 
-PS. I would've asked a bit more about the incoming JSON data structure, but because it was late at night, I assumed the JSON input structure as below.
+I would've asked a bit more about the incoming JSON data structure, but because it was late at night, I assumed the incoming JSON structure as below.
 
 ```json
-
+{
+  "address": "123 street blvd. 21 New York, NY 11001",
+  "rent_roll": [
+    {
+      "unit_number": "2A",
+      "monthly_rent": 20000.00,
+      "vacancy": true,
+      "bedrooms": 3,
+      "bathrooms": 1
+    },
+    {
+      "unit_number": "2D",
+      "monthly_rent": 20000.00,
+      "vacancy": false,
+      "bedrooms": 1,
+      "bathrooms": 1
+    },
+    {
+      "unit_number": "2C",
+      "monthly_rent": 20000.00,
+      "vacancy": true,
+      "bedrooms": 2,
+      "bathrooms": 1
+    }
+  ],
+  "expense": {
+    "marketing": 1000.00,
+    "taxes": 1000.00,
+    "insurance": 5000.00,
+    "repairs": 1000.00,
+    "administration": 1000.00,
+    "payroll": 5000.00,
+    "management": 3000
+  },
+  "capitalization_rate": 10
+}
 ```
 
+## 10 Year Treasure Price
+
+Another assumption I made was about the debt rate.
+Assumption: `debt_rate = 10 year Treasury* + 200 bps`
+this translates to 10 year Treasury here is equal to 2.88% and is increased by 2% making the debt rate as `4.88%`
+
 ## Endpoints
-Net Operating Income (NOI) = total_annual_rent_collected - total_expenses
-current_market_value = net_operating_income / capitalization_rate
 
-capitalization_rate = Net Operating Income / Current Market Value
+* GET `/quotes/:id`
 
-total_annual_rent_collected = Sum of rents per unit multiplied by 12
+* POST `/quotes`
 
-debt_rate = 10 year Treasury* + 200 bps
+* PUT `/quotes/:id`
 
-minimum_debt_service = NOI / debt_payment
-- HINT​: Use a minimum debt service of 1.25 (i.e. 125% of the NOI)
-
-property_value = NOI / cap_rate
-
-DSCR constrained loan amount = (NOI / minimum_debt_sercvice) /
-
-debt_rate
-
-LTV constrained loan amount = property_value * Max LTV
-- HINT​: Use a maximum LTV of 80%
-
-Loan amount = The lesser of:
-a. LTV constrained loan amount
-b. DSCR constrained loan amount
+* DELETE `/quotes`

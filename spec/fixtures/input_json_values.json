@@ -1,0 +1,37 @@
+{
+  "address": "123 street blvd. 21 New York, NY 11001",
+  "rent_roll": [
+    {
+      "unit_number": "2A",
+      "monthly_rent": 20000.00,
+      "vacancy": true,
+      "bedrooms": 3,
+      "bathrooms": 1
+    },
+    {
+      "unit_number": "2D",
+      "monthly_rent": 20000.00,
+      "vacancy": false,
+      "bedrooms": 1,
+      "bathrooms": 1
+    },
+    {
+      "unit_number": "2C",
+      "monthly_rent": 20000.00,
+      "vacancy": true,
+      "bedrooms": 2,
+      "bathrooms": 1
+    }
+  ],
+  "expenses": {
+    "marketing": 1000.00,
+    "taxes": 1000.00,
+    "insurance": 5000.00,
+    "repairs": 1000.00,
+    "administration": 1000.00,
+    "payroll": 5000.00,
+    "utility": 1000.00,
+    "management": 3000.00
+  },
+  "capitalizatoin_rate": 10
+}
