@@ -9,7 +9,9 @@ API Provider that calculates and return the loan term quotes.
 
 ## Database Model Deisgn
 
-Will update later.
+I would really appreciate an opportunity to discuss more about this topic in person!
+
+In order to
 
 ## Input JSON Data
 
@@ -60,7 +62,17 @@ Another assumption I made was about the debt rate.
 Assumption: `debt_rate = 10 year Treasury* + 200 bps`
 this translates to 10 year Treasury here is equal to 2.88% and is increased by 2% making the debt rate as `4.88%`
 
-## Endpoints
+## Usage & Endpoints
+
+First request the authentication token from the server.
+
+* POST `/signup`, params with name, email, password, and password_confirmation
+This will return back the auth token.
+
+With the auth_token, request it in the header
+`Authorization`: auth_token
+
+API Endpoints:
 
 * GET `/quotes/:id`
 

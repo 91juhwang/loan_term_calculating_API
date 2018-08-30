@@ -5,6 +5,7 @@ class AuthenticateUser
   end
 
   def call
+    ap user
     JsonWebToken.encode(user_id: user.id) if user
   end
 
