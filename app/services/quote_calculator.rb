@@ -6,19 +6,21 @@ class QuoteCalculator
     @cap_rate = cap_rate
   end
 
+  def total_monthly_rent_collected
+    property.rent_rolls.sum(:monthly_rent)
+  end
+
+  def total_no_of_units
+    property.rent_rolls.sum(:unit_number)
+  end
+
   def total_annual_rent_collected
-    (property.rent_rolls.sum(:monthly_rent)) * 12
+    (total_monthly_rent_collected / total_no_of_units) * 12
   end
 
   def total_expenses
-    property.expenses.last.marketing +
-    property.expenses.last.taxes +
-    property.expenses.last.insurance +
-    property.expenses.last.repairs +
-    property.expenses.last.administration +
-    property.expenses.last.payroll +
-    property.expenses.last.utility +
-    property.expenses.last.management
+    columns = ['marketing', 'taxes', 'insurance', 'repairs', 'administration', 'payroll', 'utility', 'management']
+    property.expenses.last.attributes.extract!(*columns).values.sum
   end
 
   def net_operating_income

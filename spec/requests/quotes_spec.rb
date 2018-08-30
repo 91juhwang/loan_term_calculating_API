@@ -28,9 +28,50 @@ RSpec.describe 'Quotes API' do
 
   describe 'POST /quotes' do
     context 'when request attributes are valid' do
+      params =
+        {
+          "address": "123 street blvd. 21 New York, NY 11001",
+          "rent_roll": [
+            {
+              "unit_number": 6,
+              "monthly_rent": 20000.00,
+              "vacancy": 2,
+              "bedrooms": 3,
+              "bathrooms": 1,
+              "annual_total": 215000.00
+            },
+            {
+              "unit_number": 14,
+              "monthly_rent": 20000.00,
+              "vacancy": 12,
+              "bedrooms": 1,
+              "bathrooms": 1,
+              "annual_total": 215000.00
+            },
+            {
+              "unit_number": 15,
+              "monthly_rent": 20000.00,
+              "vacancy": 12,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "annual_total": 215000.00
+            }
+          ],
+          "expenses": {
+            "marketing": 10000.00,
+            "taxes": 10000.00,
+            "insurance": 50000.00,
+            "repairs": 10000.00,
+            "administration": 10000.00,
+            "payroll": 50000.00,
+            "utility": 5000,
+            "management": 30000
+          },
+          "capitalization_rate": 10
+        }
 
       it 'returns status code 201' do
-        post "/quotes", params: params
+        post "/quotes", params: params.to_json, headers: headers
         expect(response).to have_http_status(201)
       end
     end
