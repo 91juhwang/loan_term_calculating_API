@@ -6,3 +6,5 @@
   2,
   1000000
 ]
+
+{ "company": { "name": "acme", "address": "123 Carrot Street" } }

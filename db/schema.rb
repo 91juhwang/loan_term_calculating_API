@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_021342) do
+ActiveRecord::Schema.define(version: 2018_08_30_023014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,20 @@ ActiveRecord::Schema.define(version: 2018_08_30_021342) do
     t.index ["address_id"], name: "index_properties_on_address_id"
   end
 
+  create_table "units", force: :cascade do |t|
+    t.integer "monthly_rent"
+    t.string "unit_number"
+    t.boolean "vacancy"
+    t.integer "no_of_bedrooms"
+    t.integer "no_of_baths"
+    t.integer "annual_total"
+    t.bigint "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_units_on_property_id"
+  end
+
   add_foreign_key "addresses", "cities"
   add_foreign_key "properties", "addresses"
+  add_foreign_key "units", "properties"
 end
