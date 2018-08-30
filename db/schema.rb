@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_142954) do
+ActiveRecord::Schema.define(version: 2018_08_30_150624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,13 +46,14 @@ ActiveRecord::Schema.define(version: 2018_08_30_142954) do
 
   create_table "rent_rolls", force: :cascade do |t|
     t.float "monthly_rent"
-    t.string "unit_number"
-    t.boolean "vacancy"
+    t.integer "unit_number"
+    t.integer "vacancy"
     t.integer "bedrooms"
     t.integer "bathrooms"
     t.bigint "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "annual_total"
     t.index ["property_id"], name: "index_rent_rolls_on_property_id"
   end
 
