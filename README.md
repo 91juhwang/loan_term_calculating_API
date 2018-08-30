@@ -9,7 +9,7 @@ API Provider that calculates and return the loan term quotes.
 
 ## Database Model Deisgn
 
-## Association
+## Database Association
 
 ## Input JSON Data
 
