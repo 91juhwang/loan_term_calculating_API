@@ -12,11 +12,9 @@ https://loan-term-calculator.herokuapp.com (API Only)
 
 First request the authentication token from the server.
 
-* POST `/signup`, params with name, email, password, and password_confirmation
-This will return back the auth token.
-
-With the auth_token, request it in the header
-`Authorization`: auth_token
+* POST `/signup`, params with `name`, `email`, `password`, and `password_confirmation`
+This will return back the auth token to use it in the header like this
+`'Authorization': auth_token`.
 
 API Endpoints:
 
