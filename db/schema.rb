@@ -10,25 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_025044) do
+ActiveRecord::Schema.define(version: 2018_08_30_030306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "addresses", force: :cascade do |t|
-    t.string "street"
-    t.bigint "city_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_addresses_on_city_id"
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string "zip_code"
-    t.string "city_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "expenses", force: :cascade do |t|
     t.float "marketing"
@@ -47,10 +32,9 @@ ActiveRecord::Schema.define(version: 2018_08_30_025044) do
 
   create_table "properties", force: :cascade do |t|
     t.string "property_name"
-    t.bigint "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_properties_on_address_id"
+    t.string "address"
   end
 
   create_table "units", force: :cascade do |t|
@@ -66,8 +50,6 @@ ActiveRecord::Schema.define(version: 2018_08_30_025044) do
     t.index ["property_id"], name: "index_units_on_property_id"
   end
 
-  add_foreign_key "addresses", "cities"
   add_foreign_key "expenses", "properties"
-  add_foreign_key "properties", "addresses"
   add_foreign_key "units", "properties"
 end
