@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Unit, type: :model do
+RSpec.describe RentRoll, type: :model do
   it { should belong_to(:property) }
 end
