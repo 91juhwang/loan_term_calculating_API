@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_024508) do
+ActiveRecord::Schema.define(version: 2018_08_30_025044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2018_08_30_024508) do
     t.integer "monthly_rent"
     t.string "unit_number"
     t.boolean "vacancy"
-    t.integer "no_of_bedrooms"
-    t.integer "no_of_baths"
+    t.integer "bedrooms"
+    t.integer "bathrooms"
     t.integer "annual_total"
     t.bigint "property_id"
     t.datetime "created_at", null: false
