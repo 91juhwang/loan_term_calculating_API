@@ -36,7 +36,7 @@ class QuoteCalculator
   end
 
   def minimum_debt_service
-    net_operating_income / debt_payment
+    1.25
   end
 
   def property_value

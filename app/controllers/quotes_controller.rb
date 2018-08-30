@@ -8,10 +8,7 @@ class QuotesController < ApplicationController
   def create
     property = Property.find_or_create_by!(address: params[:address])
     property.expenses.create!(expense_params)
-    ap rent_roll_params
     property.rent_rolls.create!(rent_roll_params[:rent_roll]) if property.rent_rolls.empty?
-
-    ap property.rent_rolls
 
     quote_calculator = QuoteCalculator.new(property, params[:capitalization_rate])
     loan_amount = quote_calculator.calculate_loan_amount

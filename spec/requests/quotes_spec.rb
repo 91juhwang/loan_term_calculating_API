@@ -35,23 +35,23 @@ RSpec.describe 'Quotes API' do
             {
               "unit_number": 6,
               "monthly_rent": 20000.00,
-              "vacancy": 2,
+              "vacancy": 24,
               "bedrooms": 3,
               "bathrooms": 1,
               "annual_total": 215000.00
             },
             {
-              "unit_number": 14,
+              "unit_number": 150,
               "monthly_rent": 20000.00,
-              "vacancy": 12,
+              "vacancy": 142,
               "bedrooms": 1,
               "bathrooms": 1,
               "annual_total": 215000.00
             },
             {
-              "unit_number": 15,
+              "unit_number": 150,
               "monthly_rent": 20000.00,
-              "vacancy": 12,
+              "vacancy": 120,
               "bedrooms": 2,
               "bathrooms": 1,
               "annual_total": 215000.00
@@ -67,7 +67,7 @@ RSpec.describe 'Quotes API' do
             "utility": 5000,
             "management": 30000
           },
-          "capitalization_rate": 10
+          "capitalization_rate": 0.07
         }
 
       it 'returns status code 201' do
