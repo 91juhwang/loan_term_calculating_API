@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_030306) do
+ActiveRecord::Schema.define(version: 2018_08_30_032233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,19 +37,18 @@ ActiveRecord::Schema.define(version: 2018_08_30_030306) do
     t.string "address"
   end
 
-  create_table "units", force: :cascade do |t|
-    t.integer "monthly_rent"
+  create_table "rent_rolls", force: :cascade do |t|
+    t.float "monthly_rent"
     t.string "unit_number"
     t.boolean "vacancy"
     t.integer "bedrooms"
     t.integer "bathrooms"
-    t.integer "annual_total"
     t.bigint "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_id"], name: "index_units_on_property_id"
+    t.index ["property_id"], name: "index_rent_rolls_on_property_id"
   end
 
   add_foreign_key "expenses", "properties"
-  add_foreign_key "units", "properties"
+  add_foreign_key "rent_rolls", "properties"
 end
