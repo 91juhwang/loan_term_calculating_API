@@ -6,16 +6,15 @@ class QuoteCalculator
     @cap_rate = cap_rate
   end
 
-  def total_monthly_rent_collected
-    property.rent_rolls.sum(:monthly_rent)
-  end
-
-  def total_no_of_units
-    property.rent_rolls.sum(:unit_number)
+  def sum_of_rents_collected_per_unit
+    total_rents_array = property.rent_rolls.inject([]) do |memo, rent_roll|
+      memo << rent_roll.monthly_rent * rent_roll.unit_number
+    end
+    total_rents_array.sum
   end
 
   def total_annual_rent_collected
-    (total_monthly_rent_collected / total_no_of_units) * 12
+    sum_of_rents_collected_per_unit * 12
   end
 
   def total_expenses
