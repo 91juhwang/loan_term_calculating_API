@@ -8,13 +8,14 @@ class QuotesController < ApplicationController
   def create
     property = Property.find_or_create_by!(address: params[:address])
     property.expenses.create!(expense_params)
-    property.rent_rolls.create!(rent_roll_params[:rent_roll]) if property.rent_rolls.empty?
+    rent_rolls = property.rent_rolls
+    if rent_rolls.empty?
+      rent_rolls.create!(rent_roll_params[:rent_roll])
+    else
+      rent_rolls.each_with_index { |rent_roll, index| rent_roll.update(rent_roll_params[:rent_roll][index]) }
+    end
 
-    quote_calculator = QuoteCalculator.new(property, params[:capitalization_rate])
-    loan_amount = quote_calculator.calculate_loan_amount
-
-    created_quote = Quote.create!(loan_amount: loan_amount, debt_rate: quote_calculator.debt_rate, created_by: current_user.email)
-    response = { loan_amount: created_quote.loan_amount, debt_rate: created_quote.debt_rate }
+    response = create_quote(property)
     json_response(response, :created)
   end
 
@@ -29,6 +30,13 @@ class QuotesController < ApplicationController
   end
 
   private
+
+  def create_quote(property)
+    quote_calculator = QuoteCalculator.new(property, params[:capitalization_rate])
+    loan_amount = quote_calculator.calculate_loan_amount
+    created_quote = Quote.create!(loan_amount: loan_amount, debt_rate: quote_calculator.debt_rate, created_by: current_user.email)
+    { loan_amount: created_quote.loan_amount, debt_rate: created_quote.debt_rate }
+  end
 
   def set_quote
     @quote = Quote.find(params[:id])
