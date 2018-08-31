@@ -38,24 +38,24 @@ Because I did not have the exact data type, I assumed the incoming JSON structur
   "rent_roll": [
     {
       "unit_number": 6,
-      "monthly_rent": 20000.00,
+      "monthly_rent": 2000.00,
       "vacancy": 24,
       "bedrooms": 3,
       "bathrooms": 1,
       "annual_total": 215000.00
     },
     {
-      "unit_number": 150,
-      "monthly_rent": 20000.00,
-      "vacancy": 142,
+      "unit_number": 100,
+      "monthly_rent": 3000.00,
+      "vacancy": 14,
       "bedrooms": 1,
       "bathrooms": 1,
       "annual_total": 215000.00
     },
     {
-      "unit_number": 150,
-      "monthly_rent": 20000.00,
-      "vacancy": 120,
+      "unit_number": 10,
+      "monthly_rent": 2000.00,
+      "vacancy": 0,
       "bedrooms": 2,
       "bathrooms": 1,
       "annual_total": 215000.00
@@ -85,4 +85,8 @@ this translates to 10 year Treasury here is equal to 2.88% and is increased by 2
 
 Based on the 4 input fields, `address`, `rent_rolls`, `expenses`, and the `capitalization rate`, I decided that a `properties` table was necessary to connect first 3 inputs. Property will have many `rent_rolls` and `expenses` which we need to store the data in order to calculate the loan_amount quote. The overarching `Property` will be responsible for keeping track of the expenses and the rent_rolls, which makes it more scalable in the future for updating records.
 
-I was first against creating Quotes table since storing calculations breaks the 3NF in many cases. However, I created Quote model as well since keeping track of quotes for the authenticated user seemed necessary. This way, in the future, a signed up user could retrieve all of their requested quotes in the past and make comparisons.
+I was first against creating Quotes table since storing calculations breaks the 3NF in many cases. However, I created the Quote model since keeping tracks of the quote created by the authenticated user is convenient to all users. This way, in the future, a signed up user could retrieve all of their requested quotes in the past and make comparisons.
+
+* property has_many expenses
+* property has_many rent_rolls
+* user has_many quotes
