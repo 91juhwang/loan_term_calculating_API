@@ -22,7 +22,7 @@ API Endpoints:
 * GET `/quotes/:id`
 
 * POST `/quotes`
->> use the below JSON data structure
+    > use the below JSON data structure
 
 * PUT `/quotes/:id`
 
